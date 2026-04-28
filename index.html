@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Berlines artesanales rellenos con manjar y crema. Hechos con amor en Santiago. $1.400 por unidad." />
+  <title>Berlines · Artesanales de Santiago</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <style>
+/* ═══════════════════════════════════════════
+   VARIABLES
+═══════════════════════════════════════════ */
+:root {
+  --bg:        #0E0B06;
+  --bg-warm:   #1A1208;
+  --surface:   #221709;
+  --surface-2: #2C1C0A;
+  --cream:     #F5F0E8;
+  --cream-2:   #EAE0CC;
+  --cream-3:   #D5C8AC;
+  --gold:      #C9A84C;
+  --gold-l:    #D9BC6E;
+  --gold-d:    #A88A38;
+  --gold-fade: rgba(201,168,76,.10);
+  --gold-bdr:  rgba(201,168,76,.18);
+  --text:      #F2EDE4;
+  --text-m:    rgba(242,237,228,.50);
+  --text-s:    rgba(242,237,228,.28);
+  --serif: 'Playfair Display', Georgia, serif;
+  --sans:  'DM Sans', system-ui, sans-serif;
+  --sp: 120px;
+  --ease: cubic-bezier(.4,0,.2,1);
+}
+
+/* ═══════════════════════════════════════════
+   RESET
+═══════════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.65}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+img{display:block;max-width:100%}
+button,input,select,textarea{font-family:inherit}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+.container{max-width:1160px;margin:0 auto;padding:0 32px}
+
+/* ═══════════════════════════════════════════
+   BUTTONS
+═══════════════════════════════════════════ */
+.btn{
+  display:inline-flex;align-items:center;gap:9px;
+  padding:14px 32px;
+  font-size:.82rem;font-weight:500;letter-spacing:.09em;text-transform:uppercase;
+  border:none;border-radius:2px;cursor:pointer;white-space:nowrap;
+  transition:all .32s var(--ease);
+}
+.btn-gold{background:var(--gold);color:var(--bg)}
+.btn-gold:hover{background:var(--gold-l);transform:translateY(-2px);box-shadow:0 8px 28px rgba(201,168,76,.30)}
+.btn-outline{background:transparent;color:var(--cream);border:1px solid rgba(242,237,228,.25)}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+.btn-wa{background:#25D366;color:#fff}
+.btn-wa:hover{background:#22c55e;transform:translateY(-2px);box-shadow:0 8px 28px rgba(37,211,102,.30)}
+.btn-full{width:100%;justify-content:center}
+
+/* ═══════════════════════════════════════════
+   SECTION ATOMS
+═══════════════════════════════════════════ */
+.s-label{
+  display:block;font-size:.68rem;font-weight:500;
+  letter-spacing:.28em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:18px;
+}
+.s-title{
+  font-family:var(--serif);font-size:clamp(2rem,4vw,2.9rem);
+  font-weight:600;line-height:1.18;color:var(--cream);
+}
+.s-title--dark{color:var(--bg)}
+.s-line{
+  display:block;width:44px;height:1px;
+  background:var(--gold);margin-top:22px;
+}
+.s-line--center{margin-left:auto;margin-right:auto}
+
+/* ═══════════════════════════════════════════
+   SCROLL REVEAL
+═══════════════════════════════════════════ */
+[data-reveal]{
+  opacity:0;transform:translateY(30px);
+  transition:opacity .85s var(--ease),transform .85s var(--ease);
+}
+[data-reveal].visible{opacity:1;transform:none}
+
+/* ═══════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════ */
+.nav{
+  position:fixed;inset:0 0 auto;z-index:100;
+  padding:22px 0;
+  transition:padding .4s,background .4s,border-color .4s;
+}
+.nav.scrolled{
+  padding:13px 0;
+  background:rgba(14,11,6,.93);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(201,168,76,.12);
+}
+.nav__inner{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.nav__logo{
+  font-family:var(--serif);font-size:1.5rem;font-weight:600;
+  color:var(--gold);letter-spacing:.04em;flex-shrink:0;
+}
+.nav__links{display:flex;align-items:center;gap:34px}
+.nav__links a{
+  font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--text-m);position:relative;transition:color .25s;
+}
+.nav__links a::after{
+  content:'';position:absolute;bottom:-3px;left:0;
+  width:0;height:1px;background:var(--gold);transition:width .3s;
+}
+.nav__links a:hover{color:var(--cream)}
+.nav__links a:hover::after{width:100%}
+.nav__cta{
+  padding:10px 22px;background:var(--gold);color:var(--bg);
+  font-size:.76rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;
+  border-radius:2px;flex-shrink:0;transition:all .28s;
+}
+.nav__cta:hover{background:var(--gold-l);transform:translateY(-1px)}
+.nav__burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.nav__burger span{display:block;width:22px;height:1.5px;background:var(--cream);border-radius:1px;transition:all .3s}
+
+/* ═══════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════ */
+.hero{
+  position:relative;min-height:100svh;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  overflow:hidden;padding:110px 32px 90px;
+  text-align:center;
+  background-image:url('galeria1.png') !important;
+  background-size:cover !important;
+  background-position:center !important;
+  background-repeat:no-repeat !important;
+}
+.hero::before{
+  content:'';
+  position:absolute;inset:0;
+  background:rgba(0,0,0,0.5);
+  z-index:1;
+}
+.hero__content{position:relative;z-index:2;max-width:800px;margin:0 auto}
+.hero__badge{
+  display:inline-block;
+  font-size:.66rem;letter-spacing:.32em;text-transform:uppercase;
+  color:var(--gold-l);
+  border:1px solid rgba(201,168,76,.38);
+  padding:8px 26px;margin-bottom:38px;
+}
+.hero__title{
+  font-family:var(--serif);
+  font-size:clamp(3rem,8vw,6.8rem);
+  font-weight:700;line-height:1.04;
+  color:var(--cream);letter-spacing:-.01em;
+  margin-bottom:22px;
+}
+.hero__sub{
+  font-family:var(--serif);font-style:italic;
+  font-size:clamp(.95rem,2.5vw,1.25rem);
+  color:rgba(245,240,232,.72);font-weight:400;
+  margin-bottom:38px;letter-spacing:.02em;
+}
+.hero__price-badge{
+  display:inline-flex;align-items:center;gap:12px;
+  border:1px solid rgba(201,168,76,.32);
+  padding:11px 30px;margin-bottom:46px;
+}
+.hero__price-num{
+  font-family:var(--serif);font-size:1.85rem;
+  font-weight:600;color:var(--gold);
+}
+.hero__price-lbl{
+  font-size:.72rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--text-m);
+}
+.hero__actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+/* scroll indicator */
+.scroll-ind{
+  position:absolute;bottom:34px;left:50%;
+  transform:translateX(-50%);z-index:2;
+  display:flex;flex-direction:column;align-items:center;gap:9px;
+}
+.scroll-ind span{font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--text-m)}
+.scroll-line{
+  width:1px;height:50px;
+  background:linear-gradient(to bottom,rgba(201,168,76,.6),transparent);
+  animation:sAnim 2.6s ease-in-out infinite;
+}
+@keyframes sAnim{
+  0%  {transform:scaleY(0);transform-origin:top;opacity:1}
+  50% {transform:scaleY(1);transform-origin:top;opacity:1}
+  51% {transform-origin:bottom}
+  100%{transform:scaleY(0);transform-origin:bottom;opacity:0}
+}
+
+/* ═══════════════════════════════════════════
+   PRODUCTO
+═══════════════════════════════════════════ */
+.producto{padding:var(--sp) 0;background:var(--cream)}
+.producto__grid{
+  display:grid;grid-template-columns:1.1fr .9fr;
+  gap:80px;align-items:center;
+}
+.producto__img{
+  position:relative;aspect-ratio:4/5;overflow:hidden;
+}
+.producto__img img{width:100%;height:100%;object-fit:cover;transition:transform .8s ease}
+.producto__img:hover img{transform:scale(1.04)}
+.producto__img::before,.producto__img::after{
+  content:'';position:absolute;width:38px;height:38px;z-index:2;pointer-events:none;
+}
+.producto__img::before{top:-1px;left:-1px;border-top:1px solid var(--gold);border-left:1px solid var(--gold)}
+.producto__img::after{bottom:-1px;right:-1px;border-bottom:1px solid var(--gold);border-right:1px solid var(--gold)}
+
+.producto__text .s-label{color:var(--gold-d)}
+.producto__text .s-title{color:var(--bg)}
+.producto__text .s-line{margin-bottom:30px}
+.producto__desc{font-size:.98rem;line-height:1.82;color:#4A3520;margin-bottom:30px}
+
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:34px}
+.tag{
+  padding:6px 15px;border:1px solid rgba(61,31,0,.18);
+  font-size:.75rem;letter-spacing:.07em;color:#4A3520;border-radius:1px;
+}
+
+.price-card{
+  border:1px solid rgba(61,31,0,.14);
+  padding:30px 34px;background:var(--cream-2);
+}
+.price-card__num{
+  font-family:var(--serif);font-size:3.2rem;
+  font-weight:600;color:var(--gold-d);line-height:1;margin-bottom:4px;
+}
+.price-card__note{font-size:.75rem;color:#6B5040;margin-bottom:22px;letter-spacing:.04em}
+
+/* ═══════════════════════════════════════════
+   GALERÍA
+═══════════════════════════════════════════ */
+.galeria{padding:var(--sp) 0;background:var(--bg-warm)}
+.galeria__hdr{text-align:center;margin-bottom:56px}
+.galeria__grid{
+  display:grid;
+  grid-template-columns:1.4fr 1fr;
+  grid-template-rows:360px 280px;
+  gap:10px;
+}
+.galeria__item{position:relative;overflow:hidden}
+.galeria__item:first-child{grid-row:span 2}
+.galeria__item img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.galeria__item:hover img{transform:scale(1.06)}
+.galeria__overlay{
+  position:absolute;inset:0;
+  background:rgba(14,11,6,0);
+  display:flex;align-items:flex-end;padding:22px;
+  transition:background .4s;
+}
+.galeria__item:hover .galeria__overlay{background:rgba(14,11,6,.55)}
+.galeria__lbl{
+  font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--cream);border-bottom:1px solid var(--gold);padding-bottom:4px;
+  opacity:0;transform:translateY(8px);transition:opacity .38s,transform .38s;
+}
+.galeria__item:hover .galeria__lbl{opacity:1;transform:translateY(0)}
+
+/* ═══════════════════════════════════════════
+   VARIEDADES
+═══════════════════════════════════════════ */
+.variedades{padding:var(--sp) 0;background:var(--surface)}
+.variedades__hdr{text-align:center;margin-bottom:60px}
+.variedades__grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+
+.var-card{border:1px solid var(--gold-bdr);overflow:hidden;transition:border-color .35s,transform .35s,box-shadow .35s}
+.var-card:hover{border-color:rgba(201,168,76,.45);transform:translateY(-4px);box-shadow:0 20px 50px rgba(0,0,0,.28)}
+.var-card__img{aspect-ratio:16/10;overflow:hidden}
+.var-card__img img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.var-card:hover .var-card__img img{transform:scale(1.07)}
+.var-card__body{padding:32px}
+.var-card__lbl{font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.var-card__name{font-family:var(--serif);font-size:1.5rem;font-weight:600;color:var(--cream);margin-bottom:11px}
+.var-card__desc{font-size:.88rem;color:var(--text-m);line-height:1.72;margin-bottom:22px}
+.var-card__price{font-family:var(--serif);font-size:1.5rem;color:var(--gold);font-weight:500}
+
+/* ═══════════════════════════════════════════
+   BENEFICIOS
+═══════════════════════════════════════════ */
+.beneficios{padding:var(--sp) 0;background:var(--cream-2)}
+.beneficios__hdr{text-align:center;margin-bottom:70px}
+.beneficios__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:40px}
+
+.beneficio{text-align:center}
+.beneficio__icon{width:48px;height:48px;margin:0 auto 22px;color:var(--gold-d)}
+.beneficio__name{
+  font-family:var(--serif);font-size:1.08rem;font-weight:600;
+  color:var(--bg);margin-bottom:10px;
+}
+.beneficio__desc{font-size:.86rem;color:#5A4030;line-height:1.72}
+
+/* ═══════════════════════════════════════════
+   CALCULADORA
+═══════════════════════════════════════════ */
+.calculadora{padding:var(--sp) 0;background:var(--bg-warm)}
+.calc-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.calc-text .s-title{margin-bottom:18px}
+.calc-text .s-line{margin-bottom:26px}
+.calc-text p{font-size:.92rem;color:var(--text-m);line-height:1.78}
+.calc-text small{font-size:.76rem;color:var(--text-s);display:block;margin-top:14px;line-height:1.6}
+
+.calc-box{border:1px solid var(--gold-bdr);padding:42px 38px}
+.calc-product{
+  display:flex;align-items:center;gap:16px;
+  padding-bottom:26px;border-bottom:1px solid rgba(201,168,76,.12);margin-bottom:28px;
+}
+.calc-product__img{width:62px;height:62px;overflow:hidden;flex-shrink:0}
+.calc-product__img img{width:100%;height:100%;object-fit:cover}
+.calc-product__name{font-family:var(--serif);font-size:1.05rem;color:var(--cream);margin-bottom:3px}
+.calc-product__unit{font-size:.72rem;color:var(--text-m);letter-spacing:.07em}
+
+.calc-qty-lbl{font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:13px}
+.qty-ctrl{display:flex;align-items:center;border:1px solid var(--gold-bdr);width:fit-content;margin-bottom:26px}
+.qty-btn{
+  width:50px;height:50px;background:transparent;border:none;
+  color:var(--cream);font-size:1.3rem;font-weight:300;cursor:pointer;
+  transition:background .2s,color .2s;
+}
+.qty-btn:hover{background:var(--gold-fade);color:var(--gold)}
+.qty-num{
+  width:58px;text-align:center;
+  font-family:var(--serif);font-size:1.55rem;font-weight:500;color:var(--cream);
+  border-left:1px solid var(--gold-bdr);border-right:1px solid var(--gold-bdr);
+  line-height:50px;
+}
+
+.calc-promo{font-size:.78rem;color:#22c55e;min-height:1.4em;margin-bottom:6px}
+.calc-subtotal{
+  display:flex;justify-content:space-between;align-items:baseline;
+  padding-top:20px;border-top:1px solid rgba(201,168,76,.12);margin-bottom:26px;
+}
+.calc-subtotal__lbl{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-m)}
+.calc-total{
+  font-family:var(--serif);font-size:2.3rem;font-weight:600;color:var(--gold);
+  transition:color .3s;
+}
+
+/* ═══════════════════════════════════════════
+   PEDIDO / FORMULARIO
+═══════════════════════════════════════════ */
+.pedido{padding:var(--sp) 0;background:var(--surface-2)}
+.pedido__inner{display:grid;grid-template-columns:.85fr 1.15fr;gap:80px;align-items:start}
+.pedido__text .s-title{margin-bottom:18px}
+.pedido__text .s-line{margin-bottom:26px}
+.pedido__text p{font-size:.9rem;color:var(--text-m);line-height:1.78;margin-bottom:14px}
+
+.pedido__meta{display:flex;flex-direction:column;gap:10px;margin-top:6px}
+.pedido__meta-item{font-size:.82rem;color:var(--text-m);display:flex;gap:10px}
+.pedido__meta-item strong{color:var(--cream);font-weight:500;white-space:nowrap}
+
+.order-form{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-full{grid-column:span 2}
+.fg{display:flex;flex-direction:column;gap:7px}
+.fg label{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text-s)}
+.fg input,.fg select,.fg textarea{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(201,168,76,.14);
+  padding:12px 15px;color:var(--cream);
+  font-size:.9rem;outline:none;border-radius:1px;
+  transition:border-color .25s,background .25s;
+}
+.fg input::placeholder,.fg textarea::placeholder{color:var(--text-s)}
+.fg input:focus,.fg select:focus,.fg textarea:focus{
+  border-color:rgba(201,168,76,.45);background:rgba(255,255,255,.07);
+}
+.fg select option{background:var(--surface)}
+.fg textarea{resize:vertical}
+
+/* ═══════════════════════════════════════════
+   TESTIMONIOS
+═══════════════════════════════════════════ */
+.testimonios{padding:var(--sp) 0;background:var(--bg)}
+.testimonios__hdr{text-align:center;margin-bottom:60px}
+.testimonios__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+
+.testi{
+  padding:38px 34px;border:1px solid var(--gold-bdr);
+  transition:border-color .35s,transform .35s,box-shadow .35s;
+}
+.testi:hover{
+  border-color:rgba(201,168,76,.4);transform:translateY(-4px);
+  box-shadow:0 0 44px rgba(201,168,76,.06);
+}
+.testi__stars{font-size:.72rem;color:var(--gold);letter-spacing:3px;margin-bottom:20px}
+.testi__quote{
+  font-family:var(--serif);font-style:italic;
+  font-size:.98rem;color:var(--cream-3);line-height:1.82;margin-bottom:26px;
+}
+.testi__author{font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-m)}
+.testi__author strong{display:block;color:var(--cream);margin-bottom:2px;font-weight:500}
+
+/* ═══════════════════════════════════════════
+   CONTACTO
+═══════════════════════════════════════════ */
+.contacto{padding:var(--sp) 0;background:var(--cream)}
+.contacto__hdr{text-align:center;margin-bottom:60px}
+.contacto__hdr .s-label{color:var(--gold-d)}
+.contacto__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+
+.ccard{
+  padding:34px 26px;
+  border:1px solid rgba(61,31,0,.12);background:var(--cream-2);
+  transition:all .35s;
+}
+.ccard:hover{border-color:var(--gold-d);transform:translateY(-3px);box-shadow:0 14px 40px rgba(61,31,0,.1)}
+.ccard__icon{width:38px;height:38px;margin-bottom:18px;color:var(--gold-d)}
+.ccard__title{font-family:var(--serif);font-size:1.02rem;font-weight:600;color:var(--bg);margin-bottom:8px}
+.ccard__body{font-size:.84rem;color:#5A4030;line-height:1.6}
+.ccard__link{font-size:.84rem;color:var(--gold-d);font-weight:500;transition:color .2s}
+.ccard__link:hover{color:var(--bg)}
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+.footer{
+  background:#060403;
+  border-top:1px solid rgba(201,168,76,.1);
+  padding:62px 0 30px;
+}
+.footer__top{
+  display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:56px;
+  margin-bottom:46px;padding-bottom:46px;
+  border-bottom:1px solid rgba(201,168,76,.08);
+}
+.footer__logo{
+  font-family:var(--serif);font-size:1.5rem;
+  color:var(--gold);letter-spacing:.04em;display:block;margin-bottom:13px;
+}
+.footer__tagline{font-size:.82rem;color:var(--text-s);line-height:1.72;max-width:220px}
+.footer__col-ttl{
+  font-size:.63rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:18px;
+}
+.footer__col-links{display:flex;flex-direction:column;gap:10px}
+.footer__col-links a{font-size:.84rem;color:var(--text-s);transition:color .2s}
+.footer__col-links a:hover{color:var(--cream)}
+.footer__social{display:flex;gap:10px}
+.footer__social a{
+  width:36px;height:36px;border:1px solid rgba(201,168,76,.14);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--text-m);transition:all .25s;
+}
+.footer__social a:hover{border-color:var(--gold);color:var(--gold)}
+.footer__bottom{
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;
+  font-size:.72rem;color:var(--text-s);letter-spacing:.05em;
+}
+
+/* ═══════════════════════════════════════════
+   FLOATING WHATSAPP
+═══════════════════════════════════════════ */
+.wa-float{
+  position:fixed;bottom:26px;right:26px;z-index:200;
+  display:flex;align-items:center;gap:10px;
+  padding:13px 20px 13px 17px;
+  background:#25D366;color:#fff;border-radius:2px;
+  font-size:.78rem;font-weight:500;letter-spacing:.06em;
+  box-shadow:0 4px 22px rgba(37,211,102,.32);
+  transition:all .32s var(--ease);
+  animation:waPing 3s ease-in-out infinite;
+}
+.wa-float:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(37,211,102,.42);animation:none}
+.wa-float.hidden{opacity:0;pointer-events:none}
+@keyframes waPing{
+  0%,100%{box-shadow:0 4px 22px rgba(37,211,102,.32),0 0 0 0 rgba(37,211,102,.25)}
+  50%{box-shadow:0 4px 22px rgba(37,211,102,.32),0 0 0 12px rgba(37,211,102,0)}
+}
+
+/* ═══════════════════════════════════════════
+   TOAST
+═══════════════════════════════════════════ */
+.toast{
+  position:fixed;bottom:26px;left:50%;
+  transform:translateX(-50%) translateY(90px);
+  z-index:300;background:var(--cream);color:var(--bg);
+  padding:13px 26px;font-size:.84rem;font-weight:500;
+  box-shadow:0 8px 40px rgba(0,0,0,.28);
+  transition:transform .42s var(--ease);white-space:nowrap;
+}
+.toast.show{transform:translateX(-50%) translateY(0)}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE — 1024px
+═══════════════════════════════════════════ */
+@media(max-width:1024px){
+  :root{--sp:80px}
+  .beneficios__grid{grid-template-columns:repeat(2,1fr)}
+  .contacto__grid{grid-template-columns:repeat(2,1fr)}
+  .footer__top{grid-template-columns:1fr 1fr}
+  .calc-inner{grid-template-columns:1fr}
+  .pedido__inner{grid-template-columns:1fr}
+  .galeria__grid{
+    grid-template-columns:1fr 1fr;
+    grid-template-rows:280px 220px;
+  }
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE — 768px
+═══════════════════════════════════════════ */
+@media(max-width:768px){
+  :root{--sp:64px}
+  .container{padding:0 20px}
+
+  .nav__links,.nav__cta{display:none}
+  .nav__burger{display:flex}
+  .nav__links.open{
+    display:flex;flex-direction:column;
+    position:fixed;inset:0;
+    background:rgba(14,11,6,.97);
+    justify-content:center;align-items:center;gap:38px;z-index:99;
+  }
+  .nav__links.open a{font-size:1.3rem;font-family:var(--serif);color:var(--cream);letter-spacing:.06em}
+
+  .hero__title{font-size:clamp(2.6rem,10vw,4.5rem)}
+  .hero__actions{flex-direction:column;align-items:center}
+  .hero__actions .btn{width:100%;max-width:290px}
+
+  .producto__grid{grid-template-columns:1fr;gap:40px}
+
+  .galeria__grid{
+    grid-template-columns:1fr;
+    grid-template-rows:260px 200px 200px;
+  }
+  .galeria__item:first-child{grid-row:span 1}
+
+  .variedades__grid{grid-template-columns:1fr}
+
+  .beneficios__grid{grid-template-columns:1fr 1fr}
+
+  .testimonios__grid{grid-template-columns:1fr}
+
+  .order-form{grid-template-columns:1fr}
+  .form-full{grid-column:span 1}
+
+  .footer__top{grid-template-columns:1fr;gap:34px}
+  .footer__bottom{flex-direction:column;text-align:center}
+
+  .wa-float span{display:none}
+  .wa-float{padding:15px;border-radius:50%}
+}
+
+@media(max-width:480px){
+  .beneficios__grid{grid-template-columns:1fr}
+  .contacto__grid{grid-template-columns:1fr}
+}
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════
+     NAV
+═══════════════════════════════════ -->
+<nav class="nav" id="navbar">
+  <div class="container nav__inner">
+    <a href="#" class="nav__logo">Berlines</a>
+    <ul class="nav__links" id="navLinks">
+      <li><a href="#producto">El producto</a></li>
+      <li><a href="#variedades">Variedades</a></li>
+      <li><a href="#pedido">Pedir</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <a href="#pedido" class="nav__cta">Pedir ahora</a>
+    <button class="nav__burger" id="burger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════
+     HERO
+═══════════════════════════════════ -->
+<section class="hero" id="hero">
+  <div class="hero__content" data-reveal style="position:relative;z-index:2">
+    <span class="hero__badge">Artesanal &nbsp;·&nbsp; Santiago &nbsp;·&nbsp; Hecho con amor</span>
+    <h1 class="hero__title">El Berlín<br />que no olvidarás</h1>
+    <p class="hero__sub">Relleno generoso. Masa suave. Hecho con amor.</p>
+    <div class="hero__price-badge">
+      <span class="hero__price-num">$1.400</span>
+      <span class="hero__price-lbl">por unidad</span>
+    </div>
+    <div class="hero__actions">
+      <!-- Reemplaza: 56942204598 con tu número real -->
+      <a href="https://wa.me/56942204598?text=Hola!%20Quiero%20pedir%20berlines%20%F0%9F%8D%A9"
+         class="btn btn-gold" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+        Pedir por WhatsApp
+      </a>
+      <a href="#producto" class="btn btn-outline">Ver el producto</a>
+    </div>
+  </div>
+  <div class="scroll-ind">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     PRODUCTO
+═══════════════════════════════════ -->
+<section class="producto" id="producto">
+  <div class="container">
+    <div class="producto__grid">
+
+      <div class="producto__img" data-reveal>
+        <img
+          src="galeria2.png"
+          alt="Berlín artesanal en plato"
+          loading="lazy"
+          style="object-fit:cover;width:100%;height:100%"
+        />
+      </div>
+
+      <div class="producto__text" data-reveal data-delay="140">
+        <span class="s-label">Nuestro producto</span>
+        <h2 class="s-title s-title--dark">Una textura única.<br />Un relleno generoso.</h2>
+        <span class="s-line"></span>
+        <p class="producto__desc">
+          Elaborado con masa brioche de fermentación lenta, nuestro berlín tiene
+          una textura extraordinariamente suave y esponjosa. El relleno —manjar
+          artesanal o crema batida fresca— es abundante, sin escatimar.
+          Finalizado con azúcar flor, es la pastelería chilena en su mejor versión.
+        </p>
+        <div class="tags">
+          <span class="tag">Masa brioche</span>
+          <span class="tag">Manjar artesanal</span>
+          <span class="tag">Crema batida</span>
+          <span class="tag">Azúcar flor</span>
+          <span class="tag">Sin conservantes</span>
+        </div>
+        <div class="price-card">
+          <div class="price-card__num">$1.400</div>
+          <div class="price-card__note">CLP · por unidad · Precio final con IVA</div>
+          <a href="#calculadora" class="btn btn-gold">Calcular mi pedido</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     GALERÍA
+═══════════════════════════════════ -->
+<section class="galeria" id="galeria">
+  <div class="container">
+    <div class="galeria__hdr" data-reveal>
+      <span class="s-label">Galería</span>
+      <h2 class="s-title">Cada detalle, una obra</h2>
+      <span class="s-line s-line--center"></span>
+    </div>
+    <div class="galeria__grid" data-reveal>
+
+      <!-- imagen grande izquierda -->
+      <div class="galeria__item">
+        <img
+          src="galeria3.png"
+          alt="Caja de berlines vista frontal"
+          loading="lazy"
+          style="object-fit:cover;width:100%;height:100%"
+        />
+        <div class="galeria__overlay">
+          <span class="galeria__lbl">Caja completa</span>
+        </div>
+      </div>
+
+      <!-- imagen derecha superior -->
+      <div class="galeria__item">
+        <img
+          src="galeria4.png"
+          alt="Berlines con crema en bandeja"
+          loading="lazy"
+          style="object-fit:cover;width:100%;height:100%"
+        />
+        <div class="galeria__overlay">
+          <span class="galeria__lbl">Berlín de crema</span>
+        </div>
+      </div>
+
+      <!-- imagen derecha inferior -->
+      <div class="galeria__item">
+        <img
+          src="galeria5.png"
+          alt="Caja con 8 berlines"
+          loading="lazy"
+          style="object-fit:cover;width:100%;height:100%"
+        />
+        <div class="galeria__overlay">
+          <span class="galeria__lbl">Disponible por caja</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     VARIEDADES
+═══════════════════════════════════ -->
+<section class="variedades" id="variedades">
+  <div class="container">
+    <div class="variedades__hdr" data-reveal>
+      <span class="s-label">Variedades</span>
+      <h2 class="s-title">Elige el tuyo</h2>
+      <span class="s-line s-line--center"></span>
+    </div>
+    <div class="variedades__grid">
+
+      <div class="var-card" data-reveal data-delay="0">
+        <div class="var-card__img">
+          <img
+            src="galeria2.png"
+            alt="Berlín de Manjar"
+            loading="lazy"
+          />
+        </div>
+        <div class="var-card__body">
+          <div class="var-card__lbl">Variedad clásica</div>
+          <h3 class="var-card__name">Berlín de Manjar</h3>
+          <p class="var-card__desc">
+            Relleno generoso con manjar artesanal chileno, de textura cremosa y sabor
+            profundamente dulce. La combinación perfecta con nuestra masa brioche.
+          </p>
+          <div class="var-card__price">$1.400</div>
+        </div>
+      </div>
+
+      <div class="var-card" data-reveal data-delay="120">
+        <div class="var-card__img">
+          <img
+            src="galeria3.png"
+            alt="Berlín de Crema"
+            loading="lazy"
+          />
+        </div>
+        <div class="var-card__body">
+          <div class="var-card__lbl">Variedad premium</div>
+          <h3 class="var-card__name">Berlín de Crema</h3>
+          <p class="var-card__desc">
+            Crema batida fresca, ligera y suavemente dulce. Para quienes prefieren
+            una experiencia más delicada y aireada en cada bocado.
+          </p>
+          <div class="var-card__price">$1.400</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     BENEFICIOS
+═══════════════════════════════════ -->
+<section class="beneficios" id="beneficios">
+  <div class="container">
+    <div class="beneficios__hdr" data-reveal>
+      <span class="s-label" style="color:var(--gold-d)">Por qué elegirnos</span>
+      <h2 class="s-title s-title--dark">Calidad en cada detalle</h2>
+      <span class="s-line s-line--center"></span>
+    </div>
+    <div class="beneficios__grid">
+
+      <div class="beneficio" data-reveal data-delay="0">
+        <svg class="beneficio__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 11V6a2 2 0 0 0-2-2 2 2 0 0 0-2 2"/><path d="M14 10.5V4a2 2 0 0 0-2-2 2 2 0 0 0-2 2v2"/><path d="M10 10.5V6a2 2 0 0 0-2-2 2 2 0 0 0-2 2v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/>
+        </svg>
+        <h3 class="beneficio__name">Hecho a mano</h3>
+        <p class="beneficio__desc">Cada berlín es preparado manualmente, con amasado y formado artesanal que ninguna máquina puede replicar.</p>
+      </div>
+
+      <div class="beneficio" data-reveal data-delay="100">
+        <svg class="beneficio__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+        </svg>
+        <h3 class="beneficio__name">Ingredientes naturales</h3>
+        <p class="beneficio__desc">Sin conservantes ni artificiales. Harina especial, leche fresca y manjar artesanal de calidad premium seleccionados.</p>
+      </div>
+
+      <div class="beneficio" data-reveal data-delay="200">
+        <svg class="beneficio__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+        </svg>
+        <h3 class="beneficio__name">Entrega fresca</h3>
+        <p class="beneficio__desc">Horneamos el mismo día de entrega. Tu pedido llega tibio, suave y con el relleno en su mejor textura.</p>
+      </div>
+
+      <div class="beneficio" data-reveal data-delay="300">
+        <svg class="beneficio__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+        </svg>
+        <h3 class="beneficio__name">Pedido fácil</h3>
+        <p class="beneficio__desc">Solo escríbenos por WhatsApp. En minutos coordinamos tu pedido, el pago y la entrega. Sin complicaciones.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     CALCULADORA
+═══════════════════════════════════ -->
+<section class="calculadora" id="calculadora">
+  <div class="container">
+    <div class="calc-inner">
+
+      <div class="calc-text" data-reveal>
+        <span class="s-label">Haz tu pedido</span>
+        <h2 class="s-title">Calcula tu total<br />antes de pedir</h2>
+        <span class="s-line"></span>
+        <p>Selecciona cuántos berlines quieres. El total se actualiza automáticamente y el botón de WhatsApp pre-completa el mensaje con tu pedido.</p>
+        <small>Pedidos de 6 o más unidades: consulta nuestro descuento para grupos y eventos.</small>
+      </div>
+
+      <div class="calc-box" data-reveal data-delay="150">
+        <div class="calc-product">
+          <div class="calc-product__img">
+            <img src="galeria2.png" alt="Berlín" loading="lazy" style="object-fit:cover;width:100%;height:100%" />
+          </div>
+          <div>
+            <div class="calc-product__name">Berlín Artesanal</div>
+            <div class="calc-product__unit">$1.400 por unidad</div>
+          </div>
+        </div>
+
+        <div class="calc-qty-lbl">Cantidad</div>
+        <div class="qty-ctrl">
+          <button class="qty-btn" id="qMinus" aria-label="Restar">−</button>
+          <span class="qty-num" id="qDisplay">1</span>
+          <button class="qty-btn" id="qPlus" aria-label="Sumar">+</button>
+        </div>
+
+        <div class="calc-promo" id="calcPromo"></div>
+
+        <div class="calc-subtotal">
+          <span class="calc-subtotal__lbl">Total estimado</span>
+          <span class="calc-total" id="calcTotal">$1.400</span>
+        </div>
+
+        <!-- Reemplaza: 56942204598 con tu número real -->
+        <a href="#" class="btn btn-wa btn-full" id="calcWaBtn">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+          Confirmar pedido por WhatsApp
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     FORMULARIO / PEDIDO
+═══════════════════════════════════ -->
+<section class="pedido" id="pedido">
+  <div class="container">
+    <div class="pedido__inner">
+
+      <div class="pedido__text" data-reveal>
+        <span class="s-label">Formulario</span>
+        <h2 class="s-title">Deja tus datos<br />y te contactamos</h2>
+        <span class="s-line"></span>
+        <p>Completa el formulario y al enviar abriremos WhatsApp con tu pedido pre-completado. Fácil y rápido.</p>
+        <div class="pedido__meta">
+          <div class="pedido__meta-item">
+            <strong>WhatsApp</strong>
+            <!-- Reemplaza con tu número real -->
+            <span>+56 9 4220 4598</span>
+          </div>
+          <div class="pedido__meta-item">
+            <strong>Dirección</strong>
+            <!-- Reemplaza con tu dirección real -->
+            <span>Santiago, Chile</span>
+          </div>
+          <div class="pedido__meta-item">
+            <strong>Horarios</strong>
+            <!-- Reemplaza con tus horarios reales -->
+            <span>Lun – Sáb · 08:00 – 19:00</span>
+          </div>
+        </div>
+      </div>
+
+      <form class="order-form" id="orderForm" data-reveal data-delay="100">
+        <div class="fg">
+          <label for="f-nombre">Nombre completo</label>
+          <input type="text" id="f-nombre" placeholder="Tu nombre" required />
+        </div>
+        <div class="fg">
+          <label for="f-tel">Teléfono</label>
+          <input type="tel" id="f-tel" placeholder="+56 9 XXXX XXXX" required />
+        </div>
+        <div class="fg">
+          <label for="f-comuna">Comuna</label>
+          <input type="text" id="f-comuna" placeholder="Tu comuna" />
+        </div>
+        <div class="fg">
+          <label for="f-variedad">Variedad</label>
+          <select id="f-variedad">
+            <option value="Manjar">Berlín de Manjar</option>
+            <option value="Crema">Berlín de Crema</option>
+            <option value="Mixto">Mixto (Manjar + Crema)</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label for="f-cantidad">Cantidad</label>
+          <input type="number" id="f-cantidad" min="1" max="100" value="1" />
+        </div>
+        <div class="fg">
+          <label for="f-nota">Nota adicional</label>
+          <input type="text" id="f-nota" placeholder="Ej: retiro, horario preferido..." />
+        </div>
+        <div class="fg form-full" style="margin-top:4px">
+          <button type="submit" class="btn btn-gold btn-full">
+            Enviar pedido por WhatsApp
+          </button>
+        </div>
+        <p class="form-full" style="font-size:.72rem;color:var(--text-s);text-align:center">
+          Al enviar abriremos WhatsApp con tu pedido pre-completado.
+        </p>
+      </form>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     TESTIMONIOS
+═══════════════════════════════════ -->
+<section class="testimonios" id="testimonios">
+  <div class="container">
+    <div class="testimonios__hdr" data-reveal>
+      <span class="s-label">Testimonios</span>
+      <h2 class="s-title">Lo que dicen nuestros clientes</h2>
+      <span class="s-line s-line--center"></span>
+    </div>
+    <div class="testimonios__grid">
+
+      <div class="testi" data-reveal data-delay="0">
+        <div class="testi__stars">★★★★★</div>
+        <p class="testi__quote">"El berlín más rico que he probado. El relleno de manjar es increíblemente generoso y la masa se deshace en la boca. Ya pedí por segunda vez."</p>
+        <div class="testi__author"><strong>Valentina M.</strong>Providencia, Santiago</div>
+      </div>
+
+      <div class="testi" data-reveal data-delay="120">
+        <div class="testi__stars">★★★★★</div>
+        <p class="testi__quote">"Pedí una caja para la oficina y todos quedaron encantados. La presentación es impecable y el sabor habla por sí solo. El mejor berlín de Santiago."</p>
+        <div class="testi__author"><strong>Rodrigo P.</strong>Las Condes, Santiago</div>
+      </div>
+
+      <div class="testi" data-reveal data-delay="240">
+        <div class="testi__stars">★★★★★</div>
+        <p class="testi__quote">"La atención fue súper rápida y llegó fresquísimo. El de crema es una experiencia aparte. Calidad premium a un precio muy justo."</p>
+        <div class="testi__author"><strong>Camila T.</strong>Ñuñoa, Santiago</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     CONTACTO
+═══════════════════════════════════ -->
+<section class="contacto" id="contacto">
+  <div class="container">
+    <div class="contacto__hdr" data-reveal>
+      <span class="s-label">Encuéntranos</span>
+      <h2 class="s-title s-title--dark">Estamos aquí para ti</h2>
+      <span class="s-line s-line--center"></span>
+    </div>
+    <div class="contacto__grid" data-reveal>
+
+      <div class="ccard">
+        <svg class="ccard__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l1.27-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </svg>
+        <h3 class="ccard__title">WhatsApp</h3>
+        <!-- Reemplaza: 56942204598 con tu número real -->
+        <a href="https://wa.me/56942204598" class="ccard__link" target="_blank" rel="noopener noreferrer">+56 9 4220 4598</a>
+      </div>
+
+      <div class="ccard">
+        <svg class="ccard__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+        </svg>
+        <h3 class="ccard__title">Dirección</h3>
+        <!-- Reemplaza con tu dirección real -->
+        <span class="ccard__body">Tu dirección aquí<br />Santiago, Chile</span>
+      </div>
+
+      <div class="ccard">
+        <svg class="ccard__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+        </svg>
+        <h3 class="ccard__title">Horarios</h3>
+        <!-- Reemplaza con tus horarios reales -->
+        <span class="ccard__body">Lunes a Sábado<br />08:00 — 19:00 hrs</span>
+      </div>
+
+      <div class="ccard">
+        <svg class="ccard__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+        </svg>
+        <h3 class="ccard__title">Instagram</h3>
+        <!-- Reemplaza con tu usuario real -->
+        <a href="https://instagram.com/berlines_cl" class="ccard__link" target="_blank" rel="noopener noreferrer">@berlines_cl</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     FOOTER
+═══════════════════════════════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__top">
+      <div>
+        <span class="footer__logo">Berlines</span>
+        <p class="footer__tagline">Artesanales. Frescos. Irresistibles.<br />Hechos con amor en Santiago.</p>
+      </div>
+      <div>
+        <div class="footer__col-ttl">Navegación</div>
+        <nav class="footer__col-links">
+          <a href="#producto">El producto</a>
+          <a href="#galeria">Galería</a>
+          <a href="#variedades">Variedades</a>
+          <a href="#pedido">Pedir</a>
+          <a href="#contacto">Contacto</a>
+        </nav>
+      </div>
+      <div>
+        <div class="footer__col-ttl">Redes sociales</div>
+        <div class="footer__social">
+          <!-- Reemplaza con tus redes reales -->
+          <a href="#" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+          </a>
+          <a href="#" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <!-- Reemplaza: 56942204598 -->
+          <a href="https://wa.me/56942204598" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 Berlines · Hecho con amor en Santiago</span>
+      <span>Artesanales desde Santiago, Chile</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════
+     BOTÓN FLOTANTE WHATSAPP
+     Reemplaza: 56942204598 con tu número real
+═══════════════════════════════════ -->
+<a href="https://wa.me/56942204598?text=Hola!%20Quiero%20pedir%20berlines%20%F0%9F%8D%A9"
+   class="wa-float" id="waFloat"
+   target="_blank" rel="noopener noreferrer"
+   aria-label="Pedir por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+  <span>Pedir ahora</span>
+</a>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ── NAV scroll ── */
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 50);
+}, { passive: true });
+
+/* ── Mobile menu ── */
+const burger   = document.getElementById('burger');
+const navLinks = document.getElementById('navLinks');
+burger.addEventListener('click', () => navLinks.classList.toggle('open'));
+navLinks.querySelectorAll('a').forEach(a =>
+  a.addEventListener('click', () => navLinks.classList.remove('open'))
+);
+
+/* ── CALCULADORA ── */
+const PRICE    = 1400;
+let qty        = 1;
+const qDisplay = document.getElementById('qDisplay');
+const calcTotalEl = document.getElementById('calcTotal');
+const calcPromoEl = document.getElementById('calcPromo');
+const calcWaBtn   = document.getElementById('calcWaBtn');
+
+function fmtCLP(n) {
+  return '$' + n.toLocaleString('es-CL');
+}
+
+function updateCalc() {
+  const total = qty * PRICE;
+  qDisplay.textContent    = qty;
+  calcTotalEl.textContent = fmtCLP(total);
+  calcPromoEl.textContent = qty >= 6
+    ? '¡Consulta nuestro descuento para pedidos grupales!'
+    : '';
+
+  const msg = encodeURIComponent(
+    `Hola! Quiero pedir ${qty} berlín${qty > 1 ? 'es' : ''} por ${fmtCLP(total)}.\n` +
+    `¿Cómo coordino el pago y la entrega?`
+  );
+  /* Reemplaza: 56942204598 */
+  calcWaBtn.href = `https://wa.me/56942204598?text=${msg}`;
+}
+
+document.getElementById('qMinus').addEventListener('click', () => {
+  if (qty > 1) { qty--; updateCalc(); }
+});
+document.getElementById('qPlus').addEventListener('click', () => {
+  if (qty < 100) { qty++; updateCalc(); }
+});
+updateCalc();
+
+/* ── FORMULARIO ── */
+document.getElementById('orderForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const nombre   = document.getElementById('f-nombre').value.trim();
+  const tel      = document.getElementById('f-tel').value.trim();
+  const comuna   = document.getElementById('f-comuna').value.trim();
+  const variedad = document.getElementById('f-variedad').value;
+  const cantidad = parseInt(document.getElementById('f-cantidad').value) || 1;
+  const nota     = document.getElementById('f-nota').value.trim();
+  const total    = fmtCLP(cantidad * PRICE);
+
+  const msg = encodeURIComponent(
+    `Hola! Quiero hacer un pedido 🍩\n` +
+    `Nombre: ${nombre}\n` +
+    `Teléfono: ${tel}\n` +
+    `Comuna: ${comuna || '—'}\n` +
+    `Variedad: ${variedad}\n` +
+    `Cantidad: ${cantidad}\n` +
+    `Total estimado: ${total}\n` +
+    (nota ? `Nota: ${nota}` : '')
+  );
+
+  /* Reemplaza: 56942204598 */
+  window.open(`https://wa.me/56942204598?text=${msg}`, '_blank');
+  showToast('Redirigiendo a WhatsApp…');
+});
+
+/* ── TOAST ── */
+const toastEl = document.getElementById('toast');
+function showToast(msg) {
+  toastEl.textContent = msg;
+  toastEl.classList.add('show');
+  setTimeout(() => toastEl.classList.remove('show'), 4000);
+}
+
+/* ── SCROLL REVEAL ── */
+const revEls = document.querySelectorAll('[data-reveal]');
+const revObs = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    const delay = parseInt(entry.target.dataset.delay || 0);
+    setTimeout(() => entry.target.classList.add('visible'), delay);
+    revObs.unobserve(entry.target);
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -36px 0px' });
+revEls.forEach(el => revObs.observe(el));
+
+/* ── WA float: ocultar al llegar al footer ── */
+const waFloat = document.getElementById('waFloat');
+const footer  = document.querySelector('.footer');
+if (footer) {
+  new IntersectionObserver(entries => {
+    waFloat.classList.toggle('hidden', entries[0].isIntersecting);
+  }, { threshold: 0.1 }).observe(footer);
+}
+
+/* ── Smooth scroll para anclas ── */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const id = a.getAttribute('href');
+    if (id === '#') return;
+    const target = document.querySelector(id);
+    if (!target) return;
+    e.preventDefault();
+    window.scrollTo({
+      top: target.getBoundingClientRect().top + window.scrollY - 70,
+      behavior: 'smooth'
+    });
+  });
+});
+</script>
+</body>
+</html>
