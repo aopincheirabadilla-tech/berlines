@@ -255,27 +255,37 @@ button,input,select,textarea{font-family:inherit}
 .galeria__hdr{text-align:center;margin-bottom:56px}
 .galeria__grid{
   display:grid;
-  grid-template-columns:1.4fr 1fr;
-  grid-template-rows:360px 280px;
-  gap:10px;
+  grid-template-columns:repeat(3,1fr);
+  gap:22px;
 }
-.galeria__item{position:relative;overflow:hidden}
-.galeria__item:first-child{grid-row:span 2}
-.galeria__item img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
-.galeria__item:hover img{transform:scale(1.06)}
-.galeria__overlay{
-  position:absolute;inset:0;
-  background:rgba(14,11,6,0);
-  display:flex;align-items:flex-end;padding:22px;
-  transition:background .4s;
+.galeria__card{
+  overflow:hidden;
+  border:1px solid var(--gold-bdr);
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .35s;
 }
-.galeria__item:hover .galeria__overlay{background:rgba(14,11,6,.55)}
-.galeria__lbl{
-  font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--cream);border-bottom:1px solid var(--gold);padding-bottom:4px;
-  opacity:0;transform:translateY(8px);transition:opacity .38s,transform .38s;
+.galeria__card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 20px 48px rgba(0,0,0,.35);
+  border-color:rgba(201,168,76,.42);
 }
-.galeria__item:hover .galeria__lbl{opacity:1;transform:translateY(0)}
+.galeria__card__img{
+  height:280px;
+  overflow:hidden;
+}
+.galeria__card__img img{
+  width:100%;height:100%;
+  object-fit:cover;
+  transition:transform .6s ease;
+}
+.galeria__card:hover .galeria__card__img img{transform:scale(1.06)}
+.galeria__card__name{
+  padding:18px 22px;
+  font-family:var(--serif);
+  font-size:1rem;font-weight:600;
+  color:var(--cream);letter-spacing:.03em;
+  border-top:1px solid var(--gold-bdr);
+  background:var(--surface);
+}
 
 /* ═══════════════════════════════════════════
    VARIEDADES
@@ -510,10 +520,7 @@ button,input,select,textarea{font-family:inherit}
   .footer__top{grid-template-columns:1fr 1fr}
   .calc-inner{grid-template-columns:1fr}
   .pedido__inner{grid-template-columns:1fr}
-  .galeria__grid{
-    grid-template-columns:1fr 1fr;
-    grid-template-rows:280px 220px;
-  }
+  .galeria__grid{grid-template-columns:repeat(2,1fr)}
 }
 
 /* ═══════════════════════════════════════════
@@ -539,11 +546,7 @@ button,input,select,textarea{font-family:inherit}
 
   .producto__grid{grid-template-columns:1fr;gap:40px}
 
-  .galeria__grid{
-    grid-template-columns:1fr;
-    grid-template-rows:260px 200px 200px;
-  }
-  .galeria__item:first-child{grid-row:span 1}
+  .galeria__grid{grid-template-columns:1fr}
 
   .variedades__grid{grid-template-columns:1fr}
 
@@ -672,43 +675,39 @@ button,input,select,textarea{font-family:inherit}
     </div>
     <div class="galeria__grid" data-reveal>
 
-      <!-- imagen grande izquierda -->
-      <div class="galeria__item">
-        <img
-          src="galeria3.png"
-          alt="Caja de berlines vista frontal"
-          loading="lazy"
-          style="object-fit:cover;width:100%;height:100%"
-        />
-        <div class="galeria__overlay">
-          <span class="galeria__lbl">Caja completa</span>
+      <div class="galeria__card">
+        <div class="galeria__card__img">
+          <img src="galeria1.png" alt="Berlín Clásico" loading="lazy" />
         </div>
+        <div class="galeria__card__name">Berlín Clásico</div>
       </div>
 
-      <!-- imagen derecha superior -->
-      <div class="galeria__item">
-        <img
-          src="galeria4.png"
-          alt="Berlines con crema en bandeja"
-          loading="lazy"
-          style="object-fit:cover;width:100%;height:100%"
-        />
-        <div class="galeria__overlay">
-          <span class="galeria__lbl">Berlín de crema</span>
+      <div class="galeria__card">
+        <div class="galeria__card__img">
+          <img src="galeria2.png" alt="Berlín de Manjar" loading="lazy" />
         </div>
+        <div class="galeria__card__name">Berlín de Manjar</div>
       </div>
 
-      <!-- imagen derecha inferior -->
-      <div class="galeria__item">
-        <img
-          src="galeria5.png"
-          alt="Caja con 8 berlines"
-          loading="lazy"
-          style="object-fit:cover;width:100%;height:100%"
-        />
-        <div class="galeria__overlay">
-          <span class="galeria__lbl">Disponible por caja</span>
+      <div class="galeria__card">
+        <div class="galeria__card__img">
+          <img src="galeria3.png" alt="Berlín de Crema" loading="lazy" />
         </div>
+        <div class="galeria__card__name">Berlín de Crema</div>
+      </div>
+
+      <div class="galeria__card">
+        <div class="galeria__card__img">
+          <img src="QUEQUE_DE_LIMON.png" alt="Queque de Limón" loading="lazy" />
+        </div>
+        <div class="galeria__card__name">Queque de Limón</div>
+      </div>
+
+      <div class="galeria__card">
+        <div class="galeria__card__img">
+          <img src="QUEQUE_DE_MANDARINA.png" alt="Queque de Mandarina" loading="lazy" />
+        </div>
+        <div class="galeria__card__name">Queque de Mandarina</div>
       </div>
 
     </div>
